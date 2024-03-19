@@ -1,8 +1,8 @@
 # Examples
 
-Run the hardhat node
+Run the hardhat node on port 8545
 ```shell
-npx hardhat node
+npx hardhat node --port 8545
 ```
 
 Deploy the contract and execute the function mint in the contract
