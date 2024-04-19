@@ -9,24 +9,23 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20FlashMint.sol";
 
-contract MyToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable, ERC20Permit, ERC20Votes, ERC20FlashMint {
-    constructor(address initialOwner)
+contract MyToken is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, ERC20Votes, ERC20FlashMint {
+    constructor()
         ERC20("MyToken", "MTK")
-        Ownable(initialOwner)
         ERC20Permit("MyToken")
     {
         _mint(msg.sender, 10000 * 10 ** decimals());
     }
 
-    function pause() public onlyOwner {
+    function pause() public {
         _pause();
     }
 
-    function unpause() public onlyOwner {
+    function unpause() public {
         _unpause();
     }
 
-    function mint(address to, uint256 amount) public onlyOwner {
+    function mint(address to, uint256 amount) public {
         _mint(to, amount);
     }
 
@@ -46,5 +45,9 @@ contract MyToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable, ERC20Permit, E
         returns (uint256)
     {
         return super.nonces(owner);
+    }
+
+    function balance(address owner) public view returns (uint256){
+        return balanceOf(owner);
     }
 }
