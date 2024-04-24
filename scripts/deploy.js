@@ -9,7 +9,7 @@ const hre = require("hardhat");
 async function main() {
   const [owner] = await ethers.getSigners();
   const ownerAddress = await owner.address
-  const myToken = await hre.ethers.deployContract("MyToken", [ownerAddress]);
+  const myToken = await hre.ethers.deployContract("MyToken");
   console.log('Deploying MyToken...');
   myToken.waitForDeployment();
 
